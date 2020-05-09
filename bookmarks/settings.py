@@ -122,11 +122,22 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+# Django redirects client to these urls during auth processes -@login_required
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
+# Recieve emails on console
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+
+# Media files storage during development
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+]
