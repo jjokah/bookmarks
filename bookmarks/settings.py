@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from django.urls import reverse_lazy
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -150,12 +152,17 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
 ]
 
-SOCIAL_AUTH_FACEBOOK_KEY = '531886057482813'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'f32aeb6108d3a7708e0b027db0fe6c31'
+SOCIAL_AUTH_FACEBOOK_KEY = 'YOUR_FACEBOOK_AUTH_KEY'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'YOUR_FACEBOOK_AUTH_SECRET'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']  # Extra permission to ask from fb user
 
-SOCIAL_AUTH_TWITTER_KEY = 'xxx'
-SOCIAL_AUTH_TWITTER_SECRET = 'xxx'
+SOCIAL_AUTH_TWITTER_KEY = 'YOUR_TWITTER_AUTH_KEY'
+SOCIAL_AUTH_TWITTER_SECRET = 'YOUR_TWITTER_AUTH_SECRET'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '711373662746-qc7ndcmov2bu023av5q0rds1bak3tjt9.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'SrVxb5a2zbTwLFqPpTCa_2WT'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'YOUR_GOOGLE_AUTH_KEY'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'YOUR_GOOGLE_AUTH_SECRET'
+
+
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda u: reverse_lazy('user_detail', args=[u.username])
+}
